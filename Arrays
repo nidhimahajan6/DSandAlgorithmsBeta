@@ -1,1 +1,55 @@
 
+package beta.array;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class PlayWithArray {
+
+	public void resolveDuplicate(int[] arr) {
+		Map<Integer, Integer> m = new HashMap<Integer, Integer>();
+		Set st = new HashSet<Integer>();
+		int count = 1;
+		for (int i = 0; i < arr.length - 1; i++) {
+			st.add(arr[i]);
+		}
+
+		Iterator<Integer> t = st.iterator();
+		while (t.hasNext()) {
+			System.out.print(" " + t.next() + " ");
+		}
+	}
+
+	boolean checkIfConsecutive(int[] arr) {
+		int min = Integer.MAX_VALUE;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] < min) {
+				min = arr[i];
+			}
+		}
+
+		for (int i = 0; i < arr.length; i++) {
+			if (Math.abs(arr[i]) - min >= arr.length)
+				return false;
+			if (Math.abs(arr[i]) - min < 0)
+				return false;
+			arr[Math.abs(arr[i]) - min] = -arr[Math.abs(arr[i]) - min];
+		}
+
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = Math.abs(arr[i]);
+		}
+		return true;
+	}
+
+	public static void main(String args[]) {
+
+		int[] arr = { 1, 2, 3, 4, 5, 7 };
+
+		System.out.println(" Check if consecutiver " + new PlayWithArray().checkIfConsecutive(arr));
+
+	}
+}
