@@ -1,0 +1,67 @@
+package beta.stack;
+
+/*
+ * pop() , push() , isEmpty(), is Full() : Basic Features of Stack as ADT implemented as array
+ * 
+ */
+public class StackAsArray {
+
+	int maxSize;
+	int top = -1;
+	int stackArray[];
+
+	StackAsArray(int sizeOfStack) {
+		this.top = -1;
+		this.maxSize = sizeOfStack;
+		stackArray = new int[maxSize];
+	}
+
+	public void push(int in) {
+		if (isStackFull()) {
+			System.out.println(" StackOverFlow"); // Implementation as array as
+													// array size cannot be
+													// changed once assigned
+		} else {
+			stackArray[++top] = in;
+		}
+	}
+
+	public int pop() {
+		if (isEmpty()) {
+			System.out.println(" Stack UnderFlow ");
+			return -1;
+		} else {
+			return stackArray[top--];
+		}
+	}
+
+	public void displayStack() {
+		while (!this.isEmpty()) {
+			System.out.println(" " + this.pop());
+		}
+		System.out.println(" ");
+	}
+
+	public boolean isEmpty() {
+		return top == -1;
+	}
+
+	public boolean isStackFull() {
+		return top == maxSize - 1;
+	}
+
+	public static void main(String args[]) {
+
+		Stack stack = new Stack(5);
+
+		stack.push(2);
+		stack.push(3);
+		stack.push(5);
+		stack.push(4);
+		stack.push(7);
+		stack.push(6);
+
+		stack.displayStack();
+	}
+
+}
