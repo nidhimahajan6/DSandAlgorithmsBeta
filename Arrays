@@ -100,6 +100,19 @@ boolean checkIfArrayHasConsecutive(int[] arr) {
 		return true;
 	}
 */
+/*********** Find Median of running stream of integers ****************** using BTree and Head************ TO DO ***/
+public int medianOfUnsortedArray(int[] arr){
+		int length = arr.length;
+		Arrays.sort(arr);
+		if(length%2==0){
+			return (arr[(length-2)/2]+arr[(length)/2])/2;
+		}else{
+			return arr[(length-1)/2];
+		}
+	}
+	
+	
+	/***************************************************************/
 	public static void main(String args[]) {
 
 		int[] arr = { 1, 2, 3, 4, 5, 7 };
