@@ -121,3 +121,97 @@ public int medianOfUnsortedArray(int[] arr){
 
 	}
 }
+/*****************************************************************************************/
+
+/******************** Find top kth item : TRICKLE DOWN LEFT ************TO DO********************/
+/*
+  Build Max Heap is O(n) and Extract Max is O(nlogn)
+*/
+public int findiTHLargestNumber(int[] arr, int k) {
+		MaxHeap maxHeap = new MaxHeap(arr);
+		for (int element : arr) {
+			maxHeap.insertElement(element);
+			// maxHeap.displayHeap();
+
+			maxHeap.percolationUp(maxHeap.currentSize++);
+
+		}
+		System.out.println(" ");
+		System.out.println(" After percolation UP");
+		System.out.println(" ");
+		maxHeap.displayHeap();
+
+		for (int i = 0; i < k; i++) {
+			maxHeap.extractMax(maxHeap);
+		}
+
+		return 0;
+	}
+	
+	
+	
+	
+	class MaxHeap{
+		
+		int currentSize=0;
+		int maxSize=30;
+		int[] heapArray;
+		
+		MaxHeap(int[] arr){
+			heapArray = new int[arr.length];
+		}
+		
+		
+		void insertElement(int element){
+			heapArray[currentSize] = element;
+		}
+		
+		void displayHeap(){
+			for(int hElement : heapArray)
+				System.out.print(" ----- > " + hElement);
+		}
+		
+		void percolationUp(int index){
+			int bottom = heapArray[index];
+			int parent = (index - 1)/2;
+			
+			//int temp = heapArray[element];
+			while(index>0 && heapArray[parent] < bottom){
+				heapArray[index] = heapArray[parent];
+				index = parent;
+				parent = (parent -1)/2;
+			}
+			heapArray[index] = bottom;
+		}
+		
+		
+		int extractMax(MaxHeap maxHeap) {
+			System.out.println("====BEFORE ===> " + maxHeap.heapArray[0]);
+			int bottom = maxHeap.heapArray[heapArray.length - 1];
+			maxHeap.heapArray[0] = bottom;
+			--maxHeap.currentSize;
+			for (int i = 0; i < maxHeap.currentSize; i++) {
+				System.out.println("====**===> " + maxHeap.heapArray[i]);
+			}
+			trickleDown(0);
+			return heapArray[0];
+		}
+		
+		
+		public void trickleDown(int index){
+			while(index < heapArray.length/2){
+				int leftChild = heapArray[2*index+1];
+				int rightChild = heapArray[2*index+2];
+				if(leftChild < heapArray[index]  && rightChild <  heapArray[index]){
+					return;
+				}else if(leftChild > heapArray[index]){
+					
+				}else{
+					
+				}
+			}
+		}
+	}
+	
+	
+/********************************************************************************************/
