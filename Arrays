@@ -22,8 +22,37 @@ public class PlayWithArray {
 			System.out.print(" " + t.next() + " ");
 		}
 	}
+	
+	/************ alternative to sort the list and find diff between consecutive ==1 ******  O(nlogn)********/
 
-	boolean checkIfConsecutive(int[] arr) {
+boolean checkIfArrayHasConsecutive(int[] arr) {
+		int min = arr[0];
+		int max = arr[1];
+		if (min > max) { // O(1)
+			int t = max;
+			max = min;
+			min = t;
+		}
+		for (int i = 0; i < arr.length; i++) {// O(n)
+			if (arr[i] > max)
+				max = arr[i];
+			if (arr[i] < min)
+				min = arr[i];
+		}
+		boolean temp[] = new boolean[arr.length];
+		for (int i = 0; i < arr.length; i++) {// O(n)
+			if (temp[arr[i] - min] == false) {
+				temp[arr[i] - min] = true;
+			} else
+				return false;
+		}
+		if ((max - min + 1) != arr.length)
+			return false;
+		return true;
+	}
+
+
+/*	boolean checkIfConsecutive(int[] arr) {
 		int min = Integer.MAX_VALUE;
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] < min) {
@@ -44,7 +73,7 @@ public class PlayWithArray {
 		}
 		return true;
 	}
-
+*/
 	public static void main(String args[]) {
 
 		int[] arr = { 1, 2, 3, 4, 5, 7 };
