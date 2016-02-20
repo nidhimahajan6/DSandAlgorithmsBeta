@@ -1,1 +1,24 @@
 
+public class StringExamples {
+/***************** reverse String **************************/
+	public void reverse(String str){
+		char[] charArray = str.toCharArray();
+		int length = charArray.length-1;
+		char temp;
+		for(int i=0;i<charArray.length/2;i++){
+				temp = charArray[i];
+				charArray[i] = charArray[length-i];
+				charArray[length-i] = temp;
+		}
+		System.out.println(" After reversal ");
+		for(int i=0;i<charArray.length;i++){
+			System.out.print(charArray[i]);
+		}
+	}
+	
+	
+	public static void main(String args[]) {
+		String str="This";
+		new StringExamples().reverse(str);
+	}
+}
