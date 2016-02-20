@@ -8,7 +8,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class PlayWithArray {
-/******************************** TO DO : same in O(n) time and O(1) space complexity***************/
+
+1. using HashMap
 	public void resolveDuplicate(int[] arr) {
 		Map<Integer, Integer> m = new HashMap<Integer, Integer>();
 		Set st = new HashSet<Integer>();
@@ -22,6 +23,31 @@ public class PlayWithArray {
 			System.out.print(" " + t.next() + " ");
 		}
 	}
+	
+	
+2. using Boolean Array	
+	public void findDuplicates(int[] arr) {
+		int min = arr[0];
+		int max = arr[1];
+		if (min > max) { // O(1)
+			int t = max;
+			max = min;
+			min = t;
+		}
+
+		boolean temp[] = new boolean[arr.length];
+		for (int i = 0; i < arr.length; i++) {// O(n)
+			if (temp[arr[i] - min] == false) {
+				temp[arr[i] - min] = true;
+			} else {
+				System.out.println(" ----> " + arr[i]);
+			}
+		}
+	}
+
+
+3. /******************************** TO DO : same in O(n) time and O(1) space complexity***************/
+	
 	
 	/************ alternative to sort the list and find diff between consecutive ==1 ******  O(nlogn)********/
 
