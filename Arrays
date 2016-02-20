@@ -234,3 +234,23 @@ public int findiTHLargestNumber(int[] arr, int k) {
 
 /******************* Merge list of arrays ***********************/
 /*************************************/
+
+
+/******************** TO DO ***********TO Do : Find count ofZeros RECURSIVELY**********/
+public int countZerosInSortedArray(int[] arr,int low,int high){// using binary Search hence in O(logn)
+		int mid  = (high+low)/2;
+		
+		
+		while(low >=0 ){
+			if(arr[mid]==0){
+			if(arr[mid+1]==0){
+			countZerosInSortedArray(arr,mid+1,arr.length-1);
+		   }else 
+			 countZerosInSortedArray(arr,0,mid-1);
+			}else{
+				countZerosInSortedArray(arr,0,mid-1);	
+			}
+		}
+		return mid+1;	
+	}
+	/*************************************************/
