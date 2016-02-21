@@ -1,1 +1,131 @@
 
+package beta.queue;
+
+
+
+public class QueueAsList {
+	LinkedListAsQueue queueList;
+	
+	int size = 0;
+	int capacity=10;
+	public QueueAsList() {
+		queueList = new LinkedListAsQueue();
+	}
+	
+	// Adding Node at tail end
+	public Node enQueue(Node node){ 
+		if(isQueueFull()){
+			System.out.println(" Queue OverFlow ");
+			return null;
+		}else{
+			Node current;
+			if(isEmpty()){
+			 current = node;	
+			} else {
+				current = queueList.first;
+				while (current.next != null) {
+					current = current.next;
+				}
+				current.next = node;
+				size++;
+			}
+		}
+		return node;
+	}
+	
+	
+	//removing Node from front 
+	public Node deQueue() {
+		if (isEmpty()) {
+			System.out.println(" Stack underflow ");
+			return null;
+		} else {
+			if (size == 1) {
+				queueList.first = null;
+			} else {
+				Node temp = queueList.first;
+				queueList.first.next = queueList.first;
+				temp = null;
+				return temp;
+			}
+		}
+		return null;
+
+	}
+	
+	
+	public void display(){
+		Node current = queueList.first;
+		while(current!=null){
+			System.out.println("-->  " + current.data);
+			current = current.next;
+			
+		}
+		
+	}
+	
+	
+	
+	public boolean isEmpty(){
+		return queueList.first  == null ;
+	}
+	
+	public boolean isQueueFull(){
+		return capacity == size;
+	}
+	
+	
+	
+	public static void main(String arg[]) {
+	//.LinkedListAsQueue.	Node node = new Node(110);
+		
+		QueueAsList queueList = new QueueAsList();
+		System.out.println(" Node added is ---------> " + queueList.enQueue(new Node(110)).data);
+		System.out.println(" Node added is ---------> " + queueList.enQueue(new Node(310)).data);
+		System.out.println(" Node added is ---------> " + queueList.enQueue(new Node(210)).data);
+		System.out.println(" Node added is ---------> " + queueList.enQueue(new Node(410)).data);
+		/*System.out.println(" Node added is " + new Node(120).data);
+		System.out.println(" Node added is " + new Node(130).data);
+		System.out.println(" Node added is " + new Node(140).data);*/
+		
+		
+		System.out.println(" Display Queueue : before dequeu");
+		queueList.display();
+		
+		System.out.println(" Node removed is " + queueList.deQueue());
+		
+		System.out.println(" Display Queueue ");
+		queueList.display();
+		
+		/*queueList.enQueue(new Node(110));
+		queueList.enQueue(new Node(120));
+		queueList.enQueue(new Node(130));*/
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+
+}
+
+
+
+class LinkedListAsQueue{
+	Node first;
+	public LinkedListAsQueue() {
+	  this.first = null;
+	}
+}
+
+
+class Node{
+	int data;
+	Node next;
+	Node(int data){
+		this.data = data;
+	}
+}
