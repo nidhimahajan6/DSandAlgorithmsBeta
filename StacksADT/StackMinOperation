@@ -1,28 +1,21 @@
 package beta.stack;
 
 public class StackWithConstantTimeOperations {
-
 	public static void main(String args[]) {
-
 		Stack stack = new Stack(5);
 		MinStack minStack = new MinStack(5); // same as size of main stack
-
 		stack.push(2);
 		if (minStack.checkIfMin(2))
 			minStack.push(2);
-
 		stack.push(6);
 		if (minStack.checkIfMin(6))
 			minStack.push(6);
-
 		stack.push(4);
 		if (minStack.checkIfMin(4))
 			minStack.push(4);
-
 		stack.push(1);
 		if (minStack.checkIfMin(1))
 			minStack.push(1);
-
 		stack.push(5);
 		if (minStack.checkIfMin(5))
 			minStack.push(5);
