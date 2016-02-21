@@ -1,0 +1,175 @@
+package beta.stack;
+
+public class StackWithConstantTimeOperations {
+
+	public static void main(String args[]) {
+
+		Stack stack = new Stack(5);
+		MinStack minStack = new MinStack(5); // same as size of main stack
+
+		stack.push(2);
+		if (minStack.checkIfMin(2))
+			minStack.push(2);
+
+		stack.push(6);
+		if (minStack.checkIfMin(6))
+			minStack.push(6);
+
+		stack.push(4);
+		if (minStack.checkIfMin(4))
+			minStack.push(4);
+
+		stack.push(1);
+		if (minStack.checkIfMin(1))
+			minStack.push(1);
+
+		stack.push(5);
+		if (minStack.checkIfMin(5))
+			minStack.push(5);
+
+		/*
+		 * stack.push(6); if (minStack.checkIfMin(6)) minStack.push(6);
+		 */
+		stack.displayStack();
+		System.out.println(" Min stack ");
+		
+        for(int i=0;i<stack.maxSize-1;i++){
+		System.out.println(" Minimum from stack in constant operation is " + stack.findMinimum(stack,minStack));
+        }
+		//minStack.displayStack();
+	}
+}
+
+/*****************************************
+ * MINIMUM STACK
+ ******************************************************************/
+
+class MinStack {
+	int maxSize;
+
+	int top = -1;
+	int stackArray[];
+
+	MinStack(int sizeOfStack) {
+		this.top = -1;
+		this.maxSize = sizeOfStack;
+		stackArray = new int[maxSize];
+	}
+
+	public boolean checkIfMin(int element) {
+		if (isEmpty()) {
+			return true;
+		} else {
+			int topElement = this.peek();
+			if (topElement >= element) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public void push(int in) {
+		if (isStackFull()) {
+			System.out.println(" StackOverFlow"); // Implementation as array as
+													// array size cannot be
+													// changed once assigned
+		} else {
+			this.stackArray[++top] = in;
+		}
+	}
+
+	public int pop() {
+		if (isEmpty()) {
+			System.out.println(" Stack UnderFlow ");
+			return -1;
+		} else {
+			return this.stackArray[top--];
+		}
+	}
+
+	public int peek() {
+		if (isEmpty()) {
+			return -1;
+		} else {
+			return stackArray[top];
+		}
+	}
+
+	public void displayStack() {
+		while (!this.isEmpty()) {
+			System.out.println(" " + this.pop());
+		}
+		System.out.println(" ");
+	}
+
+	public boolean isEmpty() {
+		return top == -1;
+	}
+
+	public boolean isStackFull() {
+		return top == maxSize - 1;
+	}
+
+}
+
+/**************************************
+ * MAIN STACK
+ *********************************************/
+class Stack {
+	int maxSize;
+	int top = -1;
+	int stackArray[];
+
+	//MinStack minStack = new MinStack(maxSize);
+
+	Stack(int sizeOfStack) {
+		//this.top = -1;
+		this.maxSize = sizeOfStack;
+		stackArray = new int[maxSize];
+	}
+
+	public void push(int in) {
+		if (isStackFull()) {
+			System.out.println(" StackOverFlow"); // Implementation as array as
+													// array size cannot be
+													// changed once assigned
+		} else {
+			stackArray[++top] = in;
+		}
+	}
+
+	public int findMinimum(Stack stack,MinStack minStack) {
+		if(stack.top == minStack.top){
+			stack.pop();
+			return minStack.pop();
+			
+		}
+		return minStack.peek();
+	}
+
+	public int pop() {
+		if (isEmpty()) {
+			System.out.println(" Stack UnderFlow ");
+			return -1;
+		} else {
+			return stackArray[top--];
+		}
+	}
+
+	public void displayStack() {
+		while (!this.isEmpty()) {
+			System.out.println(" " + this.pop());
+		}
+		System.out.println(" ");
+	}
+
+	public boolean isEmpty() {
+		return top == -1;
+	}
+
+	public boolean isStackFull() {
+		return top == maxSize - 1;
+	}
+
+}
