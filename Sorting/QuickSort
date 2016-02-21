@@ -1,1 +1,47 @@
 
+
+public class QuickSort {
+
+	public int findPivot(int[] arr, int low, int high) {
+		return (high + low) / 2;
+	}
+
+	public void sort(int[] arr) {
+		int high = arr.length - 1;
+		int low = 0;
+
+		while (high >= low) {
+			int pivot = findPivot(arr, low, high);
+			if (arr[high] > arr[pivot])
+				high--;
+
+			if (arr[low] < arr[pivot])
+				low++;
+
+			while (arr[low] > arr[pivot]) {
+				int temp = arr[pivot];
+				arr[pivot] = arr[low];
+				arr[low] = temp;
+				low++;
+				high--;
+
+			}
+			System.out.println(" high is " + pivot);
+			high--;
+			low++;
+
+		}
+
+		for (int i : arr) {
+			System.out.print(" " + i);
+		}
+	}
+
+	public static void main(String args[]) {
+		QuickSort quickSort = new QuickSort();
+
+		int[] arr = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 3, 4, 2, 7, 8 };
+
+		quickSort.sort(arr);
+	}
+}
