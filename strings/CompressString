@@ -1,0 +1,33 @@
+package beta.string;
+
+public class CompressString {
+
+	public static String compress(String str) {
+
+		StringBuffer strBuffer = new StringBuffer();
+
+		for (int i = 0; i < str.length(); i++) {
+			char temp = str.charAt(i);
+			int count = 0;
+			String str1 = str;
+			for (int j = i++; j < str1.length(); j++) {
+				if (str1.charAt(j) == temp) {
+					count++;
+				}
+				str.replace(str1.charAt(j), ' ');
+			}
+			strBuffer.append(temp).append(count);
+			count = 0;
+		}
+
+		return strBuffer.toString();
+	}
+
+	public static void main(String args[]) {
+
+		String str = "aabbbcccc";
+
+		System.out.println(" After compression " + new CompressString().compress(str));
+	}
+
+}
